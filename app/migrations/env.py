@@ -12,7 +12,8 @@ from alembic import context
 
 sys.path.insert(0, dirname(dirname(abspath(__file__))))
 
-from app.database import Base, DATABASE_URL
+from app.database import Base
+import app.config as con
 
 from app.hotels.models import Hotels
 
@@ -20,7 +21,7 @@ from app.hotels.models import Hotels
 # access to the values within the .ini file in use.
 config = context.config
 
-config.set_main_option("sqlalchemy.url", f"{DATABASE_URL}?async_fallback=True")
+config.set_main_option("sqlalchemy.url", f"{con.settings.DATABASE_URL}?async_fallback=True")
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
@@ -32,6 +33,7 @@ if config.config_file_name is not None:
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 target_metadata = Base.metadata
+
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
