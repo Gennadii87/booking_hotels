@@ -1,9 +1,11 @@
-import json
-
 import uvicorn
-from fastapi import FastAPI, Response
+from fastapi import FastAPI
+
+from app.bookings.router import router as booking_router
 
 app = FastAPI()
+
+app.include_router(booking_router)
 
 name = {}
 
@@ -25,7 +27,5 @@ async def root(key: int):
     return name
 
 
-
-
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="127.0.0.1", port=7000, reload=True)
+# if __name__ == "__main__":
+#     uvicorn.run("main:app", host="127.0.0.1", port=7000, reload=True)
