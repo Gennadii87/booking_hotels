@@ -3,4 +3,4 @@ from app.bookings.models import Bookings
 
 
 class BookingDAO(BaseDAO):
-    model = Bookings.__table__.columns
+    model = Bookings
